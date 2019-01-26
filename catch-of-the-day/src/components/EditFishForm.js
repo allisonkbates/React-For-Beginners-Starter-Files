@@ -2,11 +2,13 @@ import React from "react";
 
 class EditFishForm extends React.Component {
     handleChange = event => {
-        console.log(event.currentTarget);
         //update that fish
         //1. tkae a copy of the current fish
-        const updatedFish = { ...this.props.fish };
-        console.log(updatedFish);
+        const updatedFish = { 
+            ...this.props.fish,
+            [event.currentTarget.name]: event.currentTarget.value
+        };
+        this.props.updateFish(this.props.index, updatedFish);
     };
     render() {
         return (
@@ -21,7 +23,7 @@ class EditFishForm extends React.Component {
                 <input type="text" name="image" onChange={this.handleChange} value={this.props.fish.image} />
             </div>
         )
-    }
+    } 
 }
 
 export default EditFishForm;

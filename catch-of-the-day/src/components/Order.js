@@ -1,12 +1,19 @@
-import React from 'react';
+import React from "react";
+import PropTypes from "prop-types";
 import { formatPrice } from "../helpers";
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 class Order extends React.Component {
+	static propTypes = {
+		fishes: PropTypes.object,
+		order: PropTypes.object,
+		removeFromOrder: PropTypes.func
+	};
+
 	renderOrder = key => {
 		const fish = this.props.fishes[key];
 		const count = this.props.order[key];
-		const isAvailable = fish && fish.status === 'available';
+		const isAvailable = fish && fish.status === "available";
 		const transitionOptions= {
 			classNames: "order",
 			key,
@@ -18,7 +25,7 @@ class Order extends React.Component {
 			return (
 				<CSSTransition {...transitionOptions}>
 					<li key={key}>
-						Sorry, {fish ? fish.name : 'fish'} is no longer available.
+						Sorry, {fish ? fish.name : "fish"} is no longer available.
 					</li>
 				</CSSTransition>
 			);
